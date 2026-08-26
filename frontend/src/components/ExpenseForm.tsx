@@ -7,6 +7,7 @@ import { ExpenseFormData } from "../types";
 import { EXPENSE_CATEGORIES } from "../constants/categories";
 import { TextField, SelectBox, Button } from "../vibes";
 import { useExpenseForm } from "../hooks/useExpenseForm";
+import { formatDate } from "../utils/expenseUtils";
 
 interface ExpenseFormProps {
   initialData?: Partial<ExpenseFormData>;
@@ -27,7 +28,7 @@ export function ExpenseForm({
       onSubmit,
     });
 
-  const today = new Date().toISOString().split("T")[0];
+  const today = formatDate(new Date());
 
   const formStyle: React.CSSProperties = {
     display: "flex",

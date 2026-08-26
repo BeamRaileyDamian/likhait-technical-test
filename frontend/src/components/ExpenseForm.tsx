@@ -4,9 +4,9 @@
 
 import React from "react";
 import { ExpenseFormData } from "../types";
-import { EXPENSE_CATEGORIES } from "../constants/categories";
-import { TextField, SelectBox, Button } from "../vibes";
+import { TextField, Button } from "../vibes";
 import { useExpenseForm } from "../hooks/useExpenseForm";
+import { CategorySelect } from "./CategorySelect";
 
 interface ExpenseFormProps {
   initialData?: Partial<ExpenseFormData>;
@@ -39,11 +39,6 @@ export function ExpenseForm({
     marginTop: "0.5rem",
   };
 
-  const categoryOptions = EXPENSE_CATEGORIES.map((category) => ({
-    value: category,
-    label: category,
-  }));
-
   return (
     <form onSubmit={handleSubmit} style={formStyle}>
       <TextField
@@ -69,13 +64,10 @@ export function ExpenseForm({
         required
       />
 
-      <SelectBox
-        label="Category"
-        options={categoryOptions}
+      <CategorySelect
         value={formData.category}
-        onChange={(e) => handleChange("category", e.target.value)}
+        onChange={(name) => handleChange("category", name)}
         error={errors.category}
-        fullWidth
         required
       />
 

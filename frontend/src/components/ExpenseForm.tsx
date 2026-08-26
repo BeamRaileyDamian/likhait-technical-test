@@ -27,6 +27,8 @@ export function ExpenseForm({
       onSubmit,
     });
 
+  const today = new Date().toISOString().split("T")[0];
+
   const formStyle: React.CSSProperties = {
     display: "flex",
     flexDirection: "column",
@@ -84,6 +86,7 @@ export function ExpenseForm({
         type="date"
         value={formData.date}
         onChange={(e) => handleChange("date", e.target.value)}
+        max={today}
         error={errors.date}
         fullWidth
         required
